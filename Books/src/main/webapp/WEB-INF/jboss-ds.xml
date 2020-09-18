@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+File:    jboss-ds.xml
+Project: Books
+Date:    Dec 31, 2018 5:48:16 PM
+Author:  Igor Morenko <morenko at lionsoft.ru>
+
+Copyright 2005-2018 LionSoft LLC. All rights reserved.
+-->
+
+<datasources xmlsn="http://www.ironjacamar.org/doc/schema/datasources_1_1.xsd" 
+             xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <!-- Derby Database -->
+    <datasource jndi-name="java:/jdbc/test" pool-name="TestDerbyDS" enabled="true" use-java-context="true">
+        <connection-url>jdbc:derby://localhost:1527/test</connection-url>
+        <driver>derby-network</driver>
+        <pool>
+            <min-pool-size>5</min-pool-size>
+            <initial-pool-size>5</initial-pool-size>
+            <max-pool-size>100</max-pool-size>
+            <prefill>true</prefill>
+        </pool>
+        <security>
+            <user-name>test</user-name>
+            <password>test</password>
+        </security>
+        <validation>
+            <validate-on-match>false</validate-on-match>
+            <background-validation>false</background-validation>
+        </validation>
+        <statement>
+            <share-prepared-statements>false</share-prepared-statements>
+        </statement>
+    </datasource>
+
+    <drivers>
+        <driver name="derby-network" module="org.apache.derby">
+            <driver-class>org.apache.derby.jdbc.ClientDriver</driver-class>
+            <!--<datasource-class>org.apache.derby.jdbc.ClientDataSource</datasource-class>-->
+            <xa-datasource-class>org.apache.derby.jdbc.ClientXADataSource</xa-datasource-class>
+        </driver>
+    </drivers>
+</datasources>

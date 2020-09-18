@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<ejb-jar xmlns="http://java.sun.com/xml/ns/j2ee"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd"
+version="2.1">-->
+<ejb-jar xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         version="3.2"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/ejb-jar_3_2.xsd">
+
+    <description>Session Bean Example</description>
+    <display-name>Session Bean Example</display-name>
+    <!-- Enterprise Beans -->
+    <enterprise-beans>
+        <!-- Stateless Session Bean -->
+        <session>
+            <ejb-name>HelloWorldEJB</ejb-name>
+            <home>ru.lionsoft.javaee.ejb.hello.ejb21.HelloHome</home>
+            <remote>ru.lionsoft.javaee.ejb.hello.ejb21.Hello</remote>
+            <local-home>ru.lionsoft.javaee.ejb.hello.ejb21.HelloLocalHome</local-home>
+            <local>ru.lionsoft.javaee.ejb.hello.ejb21.HelloLocal</local>
+            <ejb-class>ru.lionsoft.javaee.ejb.hello.ejb21.HelloBean</ejb-class>
+            <session-type>Stateless</session-type>
+            <transaction-type>Container</transaction-type>
+        </session>
+        <!-- Stateful Session Bean -->
+        <session>
+            <ejb-name>CountBean</ejb-name>
+            <business-remote>ru.lionsoft.javaee.ejb.hello.Count</business-remote>
+            <ejb-class>ru.lionsoft.javaee.ejb.hello.CountBean</ejb-class>
+            <session-type>Stateful</session-type>
+            <transaction-type>Container</transaction-type>
+        </session>
+        <session>
+            <ejb-name>ItemEJB</ejb-name>
+            <ejb-class>ru.lionsoft.javaee.ejb.cdbookstore.beans.ItemEJB</ejb-class>
+            <env-entry>
+                <env-entry-name>currencyEntry</env-entry-name>
+                <env-entry-type>java.lang.String</env-entry-type>
+                <env-entry-value>Euros</env-entry-value>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>changeRateEntry</env-entry-name>
+                <env-entry-type>java.lang.Float</env-entry-type>
+                <env-entry-value>0.80</env-entry-value>
+            </env-entry>
+        </session>
+    </enterprise-beans>
+    <!-- Interceptors -->
+    <interceptors>
+        <interceptor>
+            <interceptor-class>ru.lionsoft.javaee.ejb.hello.stateful.CountCallbacks</interceptor-class>
+            <post-construct>
+                <lifecycle-callback-method>construct</lifecycle-callback-method>
+            </post-construct>
+            <post-activate>
+                <lifecycle-callback-method>activate</lifecycle-callback-method>
+            </post-activate>
+            <pre-passivate>
+                <lifecycle-callback-method>passivate</lifecycle-callback-method>
+            </pre-passivate>
+            <pre-destroy>
+                <lifecycle-callback-method>destroy</lifecycle-callback-method>
+            </pre-destroy>
+        </interceptor>
+    </interceptors>
+    <assembly-descriptor>
+        <interceptor-binding>
+            <ejb-name>CountBean</ejb-name>
+            <interceptor-class>ru.lionsoft.javaee.ejb.hello.stateful.CountCallbacks</interceptor-class>
+        </interceptor-binding>
+    </assembly-descriptor>
+</ejb-jar>

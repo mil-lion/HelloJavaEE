@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CustomerViewDlg" widgetVar="CustomerViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCustomerTitle}">
+            <h:form id="CustomerViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{customerController.selected != null}">
+                        <h:outputText value="#{bundle.ViewCustomerLabel_id}"/>
+                        <h:outputText value="#{customerController.selected.id}" title="#{bundle.ViewCustomerTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewCustomerLabel_name}"/>
+                        <h:outputText value="#{customerController.selected.name}" title="#{bundle.ViewCustomerTitle_name}"/>
+                        <h:outputText value="#{bundle.ViewCustomerLabel_address}"/>
+                        <h:outputText value="#{customerController.selected.address}" title="#{bundle.ViewCustomerTitle_address}"/>
+                        <h:outputText value="#{bundle.ViewCustomerLabel_contact}"/>
+                        <h:outputText value="#{customerController.selected.contact}" title="#{bundle.ViewCustomerTitle_contact}"/>
+                        <h:outputText value="#{bundle.ViewCustomerLabel_creditLimit}"/>
+                        <h:outputText value="#{customerController.selected.creditLimit}" title="#{bundle.ViewCustomerTitle_creditLimit}"/>
+                        <h:outputText value="#{bundle.ViewCustomerLabel_discountCode}"/>
+                        <h:outputText value="#{customerController.selected.discountCode}" title="#{bundle.ViewCustomerTitle_discountCode}"/>
+                        <h:outputText value="#{bundle.ViewCustomerLabel_zip}"/>
+                        <h:outputText value="#{customerController.selected.zip}" title="#{bundle.ViewCustomerTitle_zip}"/>
+                        <h:outputText value="#{bundle.ViewCustomerLabel_lastLoad}"/>
+                        <h:outputText value="#{customerController.selected.lastLoad}" title="#{bundle.ViewCustomerTitle_lastLoad}"/>
+                        <h:outputText value="#{bundle.ViewCustomerLabel_userCreated}"/>
+                        <h:outputText value="#{customerController.selected.userCreated}" title="#{bundle.ViewCustomerTitle_userCreated}"/>
+                        <h:outputText value="#{bundle.ViewCustomerLabel_dateCreated}"/>
+                        <h:outputText value="#{customerController.selected.dateCreated}" title="#{bundle.ViewCustomerTitle_dateCreated}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewCustomerLabel_userUpdated}"/>
+                        <h:outputText value="#{customerController.selected.userUpdated}" title="#{bundle.ViewCustomerTitle_userUpdated}"/>
+                        <h:outputText value="#{bundle.ViewCustomerLabel_dateUpdated}"/>
+                        <h:outputText value="#{customerController.selected.dateUpdated}" title="#{bundle.ViewCustomerTitle_dateUpdated}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CustomerViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

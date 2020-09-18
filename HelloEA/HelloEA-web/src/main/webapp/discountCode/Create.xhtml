@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DiscountCodeCreateDlg" widgetVar="DiscountCodeCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDiscountCodeTitle}">
+            <h:form id="DiscountCodeCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{discountCodeController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateDiscountCodeLabel_code}" for="code" />
+                        <p:inputText id="code" value="#{discountCodeController.selected.code}" title="#{bundle.CreateDiscountCodeTitle_code}" required="true" requiredMessage="#{bundle.CreateDiscountCodeRequiredMessage_code}"/>
+                        <p:outputLabel value="#{bundle.CreateDiscountCodeLabel_rate}" for="rate" />
+                        <p:inputText id="rate" value="#{discountCodeController.selected.rate}" title="#{bundle.CreateDiscountCodeTitle_rate}" />
+                        <p:outputLabel value="#{bundle.CreateDiscountCodeLabel_userCreated}" for="userCreated" />
+                        <p:inputText id="userCreated" value="#{discountCodeController.selected.userCreated}" title="#{bundle.CreateDiscountCodeTitle_userCreated}" />
+                        <p:outputLabel value="#{bundle.CreateDiscountCodeLabel_dateCreated}" for="dateCreated" />
+                        <p:calendar id="dateCreated" pattern="MM/dd/yyyy HH:mm:ss" value="#{discountCodeController.selected.dateCreated}" title="#{bundle.EditDiscountCodeTitle_dateCreated}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateDiscountCodeLabel_userUpdated}" for="userUpdated" />
+                        <p:inputText id="userUpdated" value="#{discountCodeController.selected.userUpdated}" title="#{bundle.CreateDiscountCodeTitle_userUpdated}" />
+                        <p:outputLabel value="#{bundle.CreateDiscountCodeLabel_dateUpdated}" for="dateUpdated" />
+                        <p:calendar id="dateUpdated" pattern="MM/dd/yyyy HH:mm:ss" value="#{discountCodeController.selected.dateUpdated}" title="#{bundle.EditDiscountCodeTitle_dateUpdated}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{discountCodeController.create}" value="#{bundle.Save}" update="display,:DiscountCodeListForm:datalist,:growl" oncomplete="handleSubmit(args,'DiscountCodeCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DiscountCodeCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

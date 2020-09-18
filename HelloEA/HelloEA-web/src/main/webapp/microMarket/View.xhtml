@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MicroMarketViewDlg" widgetVar="MicroMarketViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMicroMarketTitle}">
+            <h:form id="MicroMarketViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{microMarketController.selected != null}">
+                        <h:outputText value="#{bundle.ViewMicroMarketLabel_code}"/>
+                        <h:outputText value="#{microMarketController.selected.code}" title="#{bundle.ViewMicroMarketTitle_code}"/>
+                        <h:outputText value="#{bundle.ViewMicroMarketLabel_radius}"/>
+                        <h:outputText value="#{microMarketController.selected.radius}" title="#{bundle.ViewMicroMarketTitle_radius}"/>
+                        <h:outputText value="#{bundle.ViewMicroMarketLabel_areaLength}"/>
+                        <h:outputText value="#{microMarketController.selected.areaLength}" title="#{bundle.ViewMicroMarketTitle_areaLength}"/>
+                        <h:outputText value="#{bundle.ViewMicroMarketLabel_areaWidth}"/>
+                        <h:outputText value="#{microMarketController.selected.areaWidth}" title="#{bundle.ViewMicroMarketTitle_areaWidth}"/>
+                        <h:outputText value="#{bundle.ViewMicroMarketLabel_userCreated}"/>
+                        <h:outputText value="#{microMarketController.selected.userCreated}" title="#{bundle.ViewMicroMarketTitle_userCreated}"/>
+                        <h:outputText value="#{bundle.ViewMicroMarketLabel_dateCreated}"/>
+                        <h:outputText value="#{microMarketController.selected.dateCreated}" title="#{bundle.ViewMicroMarketTitle_dateCreated}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewMicroMarketLabel_userUpdated}"/>
+                        <h:outputText value="#{microMarketController.selected.userUpdated}" title="#{bundle.ViewMicroMarketTitle_userUpdated}"/>
+                        <h:outputText value="#{bundle.ViewMicroMarketLabel_dateUpdated}"/>
+                        <h:outputText value="#{microMarketController.selected.dateUpdated}" title="#{bundle.ViewMicroMarketTitle_dateUpdated}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MicroMarketViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

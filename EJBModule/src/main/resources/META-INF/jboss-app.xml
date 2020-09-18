@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+File:    jboss-app.xml
+Project: EJBModule
+Date:    24 дек. 2018 8:51:30 PM
+Author:  Igor Morenko <morenko at lionsoft.ru>
+
+Copyright 2005-2018 LionSoft LLC. All rights reserved.
+-->
+<jboss-app/>
